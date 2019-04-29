@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "$LOG_HEADER [INFO] $HPACK_NAME for Project Mangement Starting..."
+echo "$LOG_HEADER [INFO] $HPACK_NAME for Project Management Starting..."
 
 CMD_OPT=start
 
