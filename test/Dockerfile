@@ -1,0 +1,39 @@
+FROM ubuntu:xenial
+
+MAINTAINER @hibuz
+
+ARG HPACK_ID=admin
+ARG HPACK_PW=hpack
+
+# Define default ENV
+ENV HPACK_USER ubuntu
+ENV HPACK_HOME /home/$HPACK_USER/hpack/$HPACK_USER
+ENV HPACK_NAME "Hibuz Pack"
+ENV HPACK_SITE "hibuz.com"
+ENV HPACK_VERSION "2.0.0"
+ENV HPACK_RELEASE "2016-10-30"
+ENV HPACK_PORT_APACHE 8100
+ENV HPACK_PORT_TOMCAT 8080
+#en, ko
+ENV HPACK_LANG "ko"
+ENV HPACK_APPS $HPACK_HOME/apps
+ENV HPACK_DATA $HPACK_HOME/data
+ENV HPACK_REPO $HPACK_HOME/repo
+ENV HPACK_BACKUP $HPACK_DATA/backup
+
+ENV PATH $HPACK_HOME/bin:$PATH
+
+# Set the locale and timezone
+ENV TZ Asia/Seoul
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+RUN echo "id-$HPACK_ID pw-$HPACK_PW"
+
+WORKDIR $HPACK_HOME
+
+# Define default command.
+CMD ["bash"]
+

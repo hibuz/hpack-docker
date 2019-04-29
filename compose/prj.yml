@@ -1,0 +1,16 @@
+version: "2"
+services:
+  prj:
+    image: hibuz.com/prj:1.0.13
+    #image: prj
+    build:
+      context: ./prj
+      args:
+        HPACK_ID: admin
+        HPACK_PW: hpack
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
+#    entrypoint: /bin/bash
+    container_name: prj

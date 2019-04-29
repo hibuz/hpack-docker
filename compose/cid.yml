@@ -1,0 +1,15 @@
+version: "2"
+services:
+  cid:
+    image: hibuz.com/cid:${TAG}
+    build:
+      context: ./cid
+      args:
+        HPACK_ID: admin
+        HPACK_PW: hpack
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
+#    entrypoint: /bin/bash
+    container_name: cid

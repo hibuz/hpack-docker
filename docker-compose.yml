@@ -1,0 +1,54 @@
+version: "2"
+services:
+#  test:
+#    image: hibuz.com/test:${TAG}
+#    build: ./test
+#    container_name: test
+  base:
+    image: hibuz.com/base:1.0.0
+    build: ./base
+    stdin_open: true
+    tty: true
+    container_name: base
+  prj:
+    image: hibuz.com/prj:${TAG}
+    build:
+      context: ./prj
+      args:
+        HPACK_ID: admin
+        HPACK_PW: hpack
+    depends_on:
+      - base
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash
+    container_name: prj
+  cid:
+    image: hibuz.com/cid:${TAG}
+    build:
+      context: ./cid
+      args:
+        HPACK_ID: admin
+        HPACK_PW: hpack
+    depends_on:
+      - prj
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash
+    container_name: cid
+  dev:
+    image: hibuz.com/dev:${TAG}
+    build:
+      context: ./dev
+    depends_on:
+      - cid
+    ports:
+      - "80:80"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash
+    container_name: dev

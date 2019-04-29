@@ -1,0 +1,15 @@
+version: "2"
+services:
+  prj:
+    image: test
+    build:
+      context: ./base
+      args:
+        HPACK_ID: admin
+        HPACK_PW: hpack
+    ports:
+      - "80:9100"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash
+    container_name: test
